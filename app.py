@@ -26,17 +26,8 @@ text = ''
 
 def background_thread():
     global text
-
     tool_log = '/home/ppg/tmp/tool.log'
     f = open(tool_log)
-
-    last_lines = f.readlines()[-3:]
-
-    for line in last_lines:
-        text += line
-
-    f.seek(os.SEEK_SET, os.SEEK_END)  # 0 2
-
     socketio.emit('server_response',
                   {'data': text}, namespace='/test_conn')
 
